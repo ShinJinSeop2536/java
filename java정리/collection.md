@@ -10,9 +10,9 @@
 
 > 컬렉션 프레임워크의 주요 인터페이스: List, Set, Map
 
-*-List: ArrayList, Verctor,LinkedList*  
-*-Set: HashSet, TreeSet*  
-*-Map: HashMap, Hashtable, TreeMap, Properties*  
+*-List : ArrayList, Verctor,LinkedList*  
+*-Set : HashSet, TreeSet*  
+*-Map : HashMap, Hashtable, TreeMap, Properties*  
 
 2.List 컬렉션
 -------------

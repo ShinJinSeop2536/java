@@ -1,5 +1,6 @@
 package collection.Map컬렉션;
 
+import java.io.IOError;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,6 +30,19 @@ public class HashMapExample {
 
         map.remove("홍길동");
         System.out.println("총 개수:"+map.size());
+
+        Set<Map.Entry<String,Integer>> entrySet = map.entrySet();
+        Iterator<Map.Entry<String,Integer>> entryIterator = entrySet.iterator();
+        while (entryIterator.hasNext()){
+            Map.Entry<String, Integer> entry = entryIterator.next();
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println("\t"+key+":"+value);
+        }
+        System.out.println();
+        map.clear();
+        System.out.println("총 개수:"+map.size());
+
 
     }
 }

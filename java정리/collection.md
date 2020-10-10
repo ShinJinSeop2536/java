@@ -64,3 +64,103 @@
 
 
 
+4.Map 컬렉션
+-------------
+
+>Map컬렉션은 Key, value으로 구성된 Entry객체를 저장, 저장된 키고 값을 저장하면 기존의 값은 없어지고 새로운 값으로 대치된다
+>Map 컬렉션은 HashMap, HashTable, LinkedHashMap, Properties, TreeMap 등이 있다.
+>매개 변수 타입과 리턴 다입에 K와 V라틑 타입 파라미터가 있는데, 이것은 Map인터페이스가 제네릭 타입이가 때뭍이다.
+
+### 4.1 HashMap
+
+>HashMap의 키로 사용할 객체는 HashCode()와 equals() 메소드를 재정의 해서 동등 객체가 될 조건을 정해야 한다.
+>키와 값의 타입은 기본타입을 사용요할수 없고 클래스 및 인터페이스 타입만 가능하다.
+
+### 4.2 HashTable
+
+> HashTable은 동기화된 메소드로 구성되어 있기 때문에 멀티 스레드가 동시에 이 메소드들을 실행할 수는 없다.
+
+### 4.3 Properties
+
+>Properties는 HashTable의 하위 클래스이기 때문에 모든 특징을 그대로 가지고 있다.
+>키와 값은 String 타입으로 제한한 컬렉션이다.
+>애플리케이션의 옵션 정보, 데이터베이스의 연결 정보, 국제화 정보가 정장된 프로퍼티(~.Properties) 파일을 익을 때 주로 사용
+
+5. 검색 기능을 강화시킨 컬렉션 
+----------------------------
+
+> 이 컬렉션들은 이진 트리를 이용해서 계층적 구조를 가지면서 객체를 저장한다.
+
+### 5.1 이진트리 구조
+
+>이진 트리는 여러 개의 노드가 트리 형태로 연결된 구조로, 루트 노드라고 부른다.
+>최대 2개의 노드를 연결할 수 있는 구조
+>연결된 두 노드를 보모- 자식 관계
+> 첫번쨰 저장되는 값은 루트 노드 
+>두번쨰 값은 루트 노드와 값을 비교하면서 트리를 따라 내려간다. 작은 값은 왼쪽, 큰값은 오른쪽
+>문자는 유니코드 값으로 비교
+>이진트리는 값들이 정렬되어 있다
+
+### 5.2 TreeSet
+
+>하나의 노드는 노드 값인 value와 외쪽과 오른쪽 자식 노드를 참조하기 위하 두개의 변수로 구성
+>트리구조라 정렬된다.
+
+### 5.2 TreeMap
+
+>TreeMap은 키와 값이 저장된 Map.Entry를 저장한다는 점이다.
+>트리구조라 정렬된다.
+
+### 5.4 Compareble과 Comparetor 
+----------------------------
+
+>TreeSet, TreeMap은 자동 오른 차순으로 저장된다.
+>TreeSet, TreeMap은 정렬을 위해 java.lang.Comparable을 구현한 객체를 요구
+>Integer, Double, String은 모두 Comparable 인터페이스를 구현하고 있다.
+>객체를 정렬하기 위해서는 생성자의 매개값으로 정렬자를 제공하면 Comparable 비구현 객체도 정렬시킬 수 있다.
+>정렬자는  Comparator인터페이스를 구현한 객체를 말한다.
+
+>compara()메소드
+*A=B return 0;*  
+*A<B return -1;*  
+*A>B return 1;* 
+
+6. LIFO와 FIFO 컬렉션 
+---------------------
+
+*LIFO(후입선출) : 나중에 넣은 객체가 먼저 빠져가는 자료구조 *
+*FIFO(선입선출) : 먼저 넣은 객체가 먼저 빠져나오는 구조*
+>LIFO 자료구조를 제공하는 스택(Stack)클래스
+>FIFO 자료구조를 제공하는 규(Queue)인터페이스를 제공
+>Stack을 으용한 대표적인 예가 JVM
+>Queue를 응요한  대표적인 예가 스레드 풀이다
+>Queue 인터패이스를 구현한 대표적인 클래스는 LinkedList이다.
+
+7. 동기화된 컬렉션
+-----------------
+
+>컬렉션 프레임워크는 대부분은의 클래스들은 싱글 스레드 환경에서 사용할 수 있도록 설계 되었다. 
+>여러 쓰레드가 동시에 접근하면 위도 하지 않게 요소가 변경 가능
+>Vertor와 HashTable은 동기화된 메소드로 구성되어 있기 떄문에 안전하다.
+
+>비돈기화된 메소드를 동기화된 메소드로 매핑한 Collection의  synchronizedXXX() 메소드를 제곻하고 있다
+*List<T> List = Collections.synchronizedList(new ArrayList<T>())*   
+*HashSet<E> set = Collections.synchronizedSet(new HashSet<E>())*   
+*Map<K,V> map = Collections.synchronizedMap(new HahsMap<K,V>())*   
+  
+8. 병렬 처리를 위한 컬렉션
+------------------------
+
+>동기화된 컬렉션은 멀티 스레드 환경에서 하나의 스레드가 요소를 안전하게 처리하도록 도와주지만, 전체 요소룰 빠를게 처리하지는 못한다.
+>자바는 멀티 스레드가 컬렉션 요소를 병렬적으로 처리할 수 있도록 컬렉션을 제공한다
+>java.util.concurrent 패키지의 ConcurrentHashMap(Map구현 클래스)와 ConcurrentLinkedQueue(Queue 구현 클래스)이다.
+
+*ConcurrentHashMap(Map구현 클래스)*  
+>부분(segment) 장금을 사용한다. 
+>처리하는 요소가 포함된 부분만 잠금하고 나머지 부분은 다른 스레드가 변경할 수 있도록 하는 것이다.
+*Map<K,V>map = new ConcurrentHashMap<K,V>();*  
+  
+*ConcurrentLinkedQueue(Queue 구현 클래스)*  
+>ConcurrentLinkedQueue는 락-프리(lock-free) 알고라즘을 구현한 클래스 컬렉션이다.
+>스레드가 동시에 접근할 경우, 잠금을 사용하지 않고도 최소한 하나의 스레드가 안전하게 요소를 정장하거나 얻도록 한다.
+*Queue<E> queue = new ConcurrentLinkedQueue<E>()*
